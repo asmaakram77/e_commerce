@@ -1,8 +1,7 @@
 ECommerce::Application.routes.draw do
 
 
-
-
+  resources :comments
 
 
   root to: "products#index"

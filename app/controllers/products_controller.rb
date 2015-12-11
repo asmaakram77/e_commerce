@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
  # before_filter :authenticate_user!
     # before_filter :set_profile, only: [:show, :edit, :update, :destroy]
-  #before_filter :set_product, except: [:index, :new, :create]
+  before_filter :set_product, except: [:index, :new, :create]
   # GET /products
   # GET /products.json
   def index
@@ -17,11 +17,10 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @comment = Comment.new
-    @comments = @product.comments
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @product }
+    
+        respond_to do |format|
+          format.html # show.html.erb
+          format.json { render json: @product }
     end
   end
 
@@ -84,5 +83,9 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  private
+    def set_product
+      @product = Product.find(params[:id])
+    end
 end
 
