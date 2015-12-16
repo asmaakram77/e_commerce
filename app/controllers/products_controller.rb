@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @comment = Comment.new
-    
+    @comments = @product.comments
         respond_to do |format|
           format.html # show.html.erb
           format.json { render json: @product }
@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
+    #@product.attachments.new
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_filter :set_comment, only: [:show, :edit, :update, :destroy]
+    before_filter :set_product, only: [:create]
+    respond_to :html
   # GET /comments
   # GET /comments.json
     def index
@@ -21,7 +24,7 @@ class CommentsController < ApplicationController
     def create
       @comment = @product.comments.new(params[:comment])
       @comment.save
-      redirect_to @comment.product
+      redirect_to @product
     end
 
     def update
